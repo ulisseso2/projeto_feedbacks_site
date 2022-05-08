@@ -1,34 +1,13 @@
-# frontend_app_feedback
+# Plataforma de Feedbacks
 
-## Project setup
-```
-npm install
-```
+Olá! Esse foi um projeto desenvoldico com Vue JS.
+É uma plataforma de feedbacks para que usuários avaliem o site.
+O adm conta com um dashboard onde ele consegue ler os comentários.
+O back and estará disponível em:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Libs:
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- Tailwind Css
+- Animate.css
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Run your end-to-end tests
-```
-npm run test:e2e
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
