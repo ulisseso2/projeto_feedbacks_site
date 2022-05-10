@@ -1,4 +1,5 @@
 <template>
+<!-- Com esse ModalFactory eu consigo controlar o estado da minha página quando um outro modal estiver aberto na tela, setando a opacidade e comportamento do clique nos modais-->
   <teleport to="body">
     <div
       v-if="state.isActive"
@@ -22,7 +23,7 @@
 
 <script>
 import { defineAsyncComponent, onBeforeUnmount, onMounted, reactive } from 'vue'
-import useModal from '../../hooks/useModal'
+import useModal from '../../hooks/useModal' // hook cricado para administrar os modais
 
 const ModalLogin = defineAsyncComponent(() => import('../ModalLogin'))
 const ModalAccountCreate = defineAsyncComponent(() => import('../ModalAccountCreate'))
@@ -42,9 +43,11 @@ export default {
       propos: {},
       width: DEFAULT_WIDTH
     })
+    // quando o modal e montado
     onMounted(() => {
       modal.listen(handleModalToogle)
     })
+    // depois que o modal é montado
     onBeforeUnmount(() => { modal.off(handleModalToogle) })
     function handleModalToogle (payload) {
       if (payload.status) {

@@ -6,4 +6,5 @@
 export default {
 
 }
+// Componente de Criação de conta
 </script>

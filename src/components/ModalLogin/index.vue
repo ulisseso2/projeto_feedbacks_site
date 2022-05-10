@@ -1,4 +1,5 @@
 <template>
+<!-- Modal de Login-->
   <div class="flex justify-between">
     <h1 class="text-2xl font-black text-brand-main ">Entre na sua Conta</h1>
     <button
@@ -30,7 +31,7 @@
         </span>
       </label>
       <label class="block">
-        <span class="text-lg font-medium text-gray-800 mt-1"> Senha </span>
+        <span class="text-lg font-medium text-gray-800 mt-3"> Senha </span>
         <input
           v-model="state.password.value"
           type="password"
@@ -64,22 +65,34 @@
 
 <script>
 import { reactive } from 'vue'
+// useField pertence a biblioteca do vee e controla minhas validações
+import { useField } from 'vee-validate'
+import { validateEmptyAddLength3, validateEmptyAndEmail } from '../../utils/validators'
 
 import useModal from '../../hooks/useModal'
 export default { // Configurando estado do Modal de Login
   setup () {
     const modal = useModal() // Instanciando modal (hook próprio para usar a função close)
 
+    const {
+      value: emailValue,
+      errorMessage: emailErrorMessage
+    } = useField('email', validateEmptyAndEmail) // Instanciando o campo email
+    const {
+      value: passwordValue,
+      errorMessage: passwordErrorMessage
+    } = useField('password', validateEmptyAddLength3) // Instanciando o campo password
+
     const state = reactive({ // reactive do vue
       hasErrors: false, // Casos de Erros
       isLoading: false,
       email: {
-        value: '',
-        errorMessage: ''
+        value: emailValue,
+        errorMessage: emailErrorMessage
       },
       password: {
-        value: '',
-        errorMessage: ''
+        value: passwordValue,
+        errorMessage: passwordErrorMessage
       }
     })
 
