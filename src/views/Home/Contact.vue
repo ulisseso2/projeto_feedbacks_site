@@ -9,7 +9,7 @@
       </p>
       <div class="mt-10">
         <a href="mailito:" class="px-6 py-2 mt-10 font-bold text-white rounded-full bg-brand-main focus:outline-none">
-          Nos mande um email
+          Mande um email para nosso time.
         </a>
       </div>
     </div>

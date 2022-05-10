@@ -7,7 +7,8 @@ O back and estará disponível em:
 
 Libs:
 
-- Tailwind Css
-- Animate.css
+- Tailwind Css (Classes Css)
+- Animate.css (Animações)
+- Tiny-Emitter (Manipulação de Eventos)
 
 Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
