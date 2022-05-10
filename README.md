@@ -5,10 +5,10 @@ Olá! Esse foi um projeto desenvoldico com Vue JS.
 O adm conta com um dashboard onde ele consegue ler os comentários.
 O back and estará disponível em:
 
-Libs:
+Bibliotecas:
 
 - Tailwind Css (Classes Css)
-- Animate.css (Animações)
-- Tiny-Emitter (Manipulação de Eventos)
+- Animate.css (Animações Css)
+- Tiny-Emitter (Manipulação de Eventos bus)
 
 Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
