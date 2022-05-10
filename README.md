@@ -7,8 +7,12 @@ O back and estará disponível em:
 
 Bibliotecas:
 
-- Tailwind Css (Classes Css)
-- Animate.css (Animações Css)
-- Tiny-Emitter (Manipulação de Eventos bus)
+- Tailwind Css (Classes Css) - https://tailwindcss.com/docs/installation
+- Animate.css (Animações Css) - https://animate.style/
+- Tiny-Emitter (Manipulação de Eventos bus) - https://github.com/scottcorgan/tiny-emitter
+- Vee-Validate (Tratamento de msg de erros) - https://vee-validate.logaretm.com/v4/
 
 Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
+
+![home](/src/assets/images/home.png)
+![login](/src/assets/images/login.png)
