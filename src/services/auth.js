@@ -1,18 +1,18 @@
-export default httpClinte => ({
+export default httpClient => ({
   login: async ({ email, password }) => {
-    const response = await httpClinte.post('auth/login', {
+    const response = await httpClient.post('/auth/login', { // Payload
       email,
       password
     })
-
     let errors = null
-
+    // Verificação de Erros
     if (!response.data) {
       errors = {
         status: response.request.status,
         statusText: response.request.statusText
       }
     }
+
     return {
       data: response.data,
       errors

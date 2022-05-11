@@ -11,11 +11,8 @@ Bibliotecas:
 - Animate.css (Animações Css) - https://animate.style/
 - Tiny-Emitter (Manipulação de Eventos bus) - https://github.com/scottcorgan/tiny-emitter
 - Vee-Validate (Tratamento de msg de erros) - https://vee-validate.logaretm.com/v4/
-- axios (Consumo de API) - https://github.com/axios/axios
 
-- Vue Toastfication (Mensagens para o usuário) - https://github.com/Maronato/vue-toastification
-
-Esse projeto foi desenvolvido durante o estudo de VueJS do site da VueJS Brasil.
+Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
 
 ![home](/src/assets/images/home.png)
 ![login](/src/assets/images/login.png)
