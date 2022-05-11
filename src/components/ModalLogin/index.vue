@@ -57,7 +57,8 @@
         }"
         class="px-8 py-2 mt-10 text-1xl font-bold text-white bg-brand-main rounded-full focus:outline-none transition-all duration-200"
       >
-        Entrar
+
+        <span >Entrar</span>
       </button>
     </form>
   </div>
@@ -68,12 +69,17 @@ import { reactive } from 'vue'
 // useField pertence a biblioteca do vee e controla minhas validações
 import { useField } from 'vee-validate'
 import { validateEmptyAddLength3, validateEmptyAndEmail } from '../../utils/validators'
-
 import useModal from '../../hooks/useModal'
-export default { // Configurando estado do Modal de Login
-  setup () {
-    const modal = useModal() // Instanciando modal (hook próprio para usar a função close)
+import services from '../../services'
+import { useRoute } from 'vue-router'
+import { useToast } from 'vue-toastification'
 
+export default { // Configurando estado do Modal de Login
+
+  setup () {
+    const router = useRoute()
+    const modal = useModal() // Instanciando modal (hook próprio para usar a função close)
+    const toast = useToast()
     const {
       value: emailValue,
       errorMessage: emailErrorMessage
@@ -96,8 +102,37 @@ export default { // Configurando estado do Modal de Login
       }
     })
 
-    function handleSubmit () {
+    async function handleSubmit () {
+      try {
+        toast.clear()
+        state.isLoading = true
+        const { data, errors } = await services.auth.login({
+          email: state.email.value,
+          password: state.password.value
+        })
+        if (!errors) {
+          window.localStorage.setItem('token', data.token)
+          state.isLoading = false
+          router.push({ nome: 'Feedbacks' })
+          modal.close()
+          return
+        }
 
+        if (errors.status === 404) {
+          toast.error('e-mail não encontrado')
+        }
+        if (errors.status === 401) {
+          toast.error('e-mail/senha Inválido')
+        }
+        if (errors.status === 400) {
+          toast.error('Ocorreu um erro ao fazer login')
+        }
+        state.isLoading = false
+      } catch (error) {
+        state.isLoading = false
+        state.hasErrors = !!error
+        toast.error('e-mail/senha Inválido')
+      }
     }
     return {
       state,
