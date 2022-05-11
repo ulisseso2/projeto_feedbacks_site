@@ -57,8 +57,7 @@
         }"
         class="px-8 py-2 mt-10 text-1xl font-bold text-white bg-brand-main rounded-full focus:outline-none transition-all duration-200"
       >
-
-        <span >Entrar</span>
+        Entrar
       </button>
     </form>
   </div>

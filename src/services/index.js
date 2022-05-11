@@ -11,16 +11,6 @@ const httpClient = axios.create({
   baseURL: API_ENVS.local
 })
 
-// Isso evita que caia no catch já que eu declarei meus códigos de erro no modal de login.
-httpClient.interceptors.response.use((response) => response, (error) => {
-  const canThrowAnError = error.request.status === 0 || error.request.status === 500
-
-  if (canThrowAnError) {
-    throw new Error(error.message)
-  }
-  return error
-})
-
 export default {
   auth: AuthService(httpClient)
 }
