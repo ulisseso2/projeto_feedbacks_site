@@ -1,6 +1,7 @@
 import axios from 'axios'
 import router from '../router'
 import AuthService from './auth'
+import UsersServices from './users'
 
 const API_ENVS = {
   production: '',
@@ -10,6 +11,16 @@ const API_ENVS = {
 
 const httpClient = axios.create({
   baseURL: API_ENVS.local
+})
+
+/* Essa configuração recebe as informações da API, eu faço a verificação se existe token e o coloco no header do Altorization retornando as configurações modificadas.
+Para veirficar se o token é válido no response eu crio um if retornando os erros 401 para home */
+httpClient.interceptors.request.use(config => {
+  const token = window.localStorage.getItem('token')
+  if (token) {
+    config.headers.common.Authorization = `Bearer ${token}`
+  }
+  return config
 })
 
 httpClient.interceptors.response.use((response) => {
@@ -22,6 +33,7 @@ httpClient.interceptors.response.use((response) => {
     throw new Error(error.message)
   }
 
+  // aqui eu peguei o erro de token suoracitado e devolvi o usuário para home
   if (error.response.status === 401) {
     router.push({ name: 'Home' })
   }
@@ -29,5 +41,6 @@ httpClient.interceptors.response.use((response) => {
 })
 
 export default {
-  auth: AuthService(httpClient)
+  auth: AuthService(httpClient),
+  users: UsersServices(httpClient)
 }

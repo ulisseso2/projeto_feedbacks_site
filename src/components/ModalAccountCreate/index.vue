@@ -65,7 +65,7 @@
             'border-brand-danger': !!state.password.errorMessage
           }"
           class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent rounded"
-          placeholder="jane.dae@gmail.com"
+          placeholder="H12@feEd!324"
         >
         <span
           v-if="!!state.password.errorMessage"
@@ -174,7 +174,7 @@ export default {
       } catch (error) {
         state.isLoading = false
         state.hasErrors = !!error
-        toast.error('Ocorreu um erro ao fazer o login')
+        toast.error('Ocorreu um erro ao criar a conta')
       }
     }
 
