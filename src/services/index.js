@@ -1,3 +1,4 @@
+import { setGlobaltLoading } from '@/Store/global'
 import axios from 'axios'
 import router from '../router'
 import AuthService from './auth'
@@ -16,6 +17,7 @@ const httpClient = axios.create({
 /* Essa configuração recebe as informações da API, eu faço a verificação se existe token e o coloco no header do Altorization retornando as configurações modificadas.
 Para veirficar se o token é válido no response eu crio um if retornando os erros 401 para home */
 httpClient.interceptors.request.use(config => {
+  setGlobaltLoading(true)
   const token = window.localStorage.getItem('token')
   if (token) {
     config.headers.common.Authorization = `Bearer ${token}`
@@ -24,12 +26,14 @@ httpClient.interceptors.request.use(config => {
 })
 
 httpClient.interceptors.response.use((response) => {
+  setGlobaltLoading(false)
   return response
 }, (error) => {
   const canThrowAnError = error.request.status === 0 ||
     error.request.status === 500
 
   if (canThrowAnError) {
+    setGlobaltLoading(false)
     throw new Error(error.message)
   }
 
@@ -37,6 +41,7 @@ httpClient.interceptors.response.use((response) => {
   if (error.response.status === 401) {
     router.push({ name: 'Home' })
   }
+  setGlobaltLoading(false)
   return error
 })
 
