@@ -1,10 +1,14 @@
 <template>
-  <h2 class="text-center">Ulisses</h2>
+  <div class="flex justify-center w-full h-28 bg-brand-main">
+    <header-logged />
+  </div>
 </template>
 
 <script>
-export default {
+import HeaderLogged from '../../components/HeaderLogged'
 
+export default {
+  components: { HeaderLogged }
 }
 </script>
 
