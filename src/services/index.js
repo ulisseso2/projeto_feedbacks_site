@@ -3,6 +3,7 @@ import axios from 'axios'
 import router from '../router'
 import AuthService from './auth'
 import UsersServices from './users'
+import FeedbacksServices from './feedbacks'
 
 const API_ENVS = {
   production: '',
@@ -47,5 +48,6 @@ httpClient.interceptors.response.use((response) => {
 
 export default {
   auth: AuthService(httpClient),
-  users: UsersServices(httpClient)
+  users: UsersServices(httpClient),
+  feedbacks: FeedbacksServices(httpClient)
 }
