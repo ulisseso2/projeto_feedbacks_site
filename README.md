@@ -14,5 +14,18 @@ Bibliotecas:
 
 Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
 
+Página Principal
+
 ![home](/src/assets/images/home.png)
+
+Tela de Login
+
 ![login](/src/assets/images/login.png)
+
+Tela de Credenciais
+
+![login](/src/assets/images/credentials.png)
+
+Tela de Feedbacks
+
+![login](/src/assets/images/feedbacks.png)
