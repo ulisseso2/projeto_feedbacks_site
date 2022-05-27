@@ -78,6 +78,7 @@ export default {
     const state = reactive({
       isLoading: false,
       isLoadingFeedbacks: false,
+      isLoadingMoreFeedbacks: false,
       feedbacks: [],
       hasError: false,
       currentFeedbacksType: '',
@@ -94,13 +95,18 @@ export default {
       window.removeEventListener('scroll', handleScroll, false)
     })
 
-    function handleScroll () {
-
+    async function handleScroll () {
+      const isBottomOfWindow = Math.ceil(
+        document.documentElement.scrollTop + window.innerHeight
+      ) >= document.documentElement.scrollHeight
+      if (state.isLoading || state.isLoadingMoreFeedbacks) return
+      if (!isBottomOfWindow) return
     }
 
     function handleErrors (error) {
       state.isLoading = false
       state.isLoadingFeedbacks = false
+      state.isLoadingMoreFeedbacks = false
       state.hasError = !!error
     }
     async function changeFeedbacksType (type) {
