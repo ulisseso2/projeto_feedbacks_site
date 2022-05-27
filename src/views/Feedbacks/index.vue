@@ -20,6 +20,7 @@
         <suspense>
           <template #default>
             <filters
+              @select="handleFeedbacksType"
               class="mt-8 animate__animated animate__fadeIn animate__faster"
             />
           </template>
@@ -42,7 +43,7 @@
         >
           Ainda nenhum feedback recebido
         </p>
-        <feedbacks-card-loading v-if="state.isLoading" />
+        <feedbacks-card-loading v-if="state.isLoading || state.isLoadingFeedbacks" />
         <feedbacks-card
           v-else
           v-for="(feedback, index) in state.feedbacks"
@@ -57,7 +58,7 @@
 </template>
 
 <script>
-import { onMounted, reactive } from 'vue'
+import { onMounted, onUnmounted, reactive } from 'vue'
 import HeaderLogged from '../../components/HeaderLogged'
 import Filters from './Filters'
 import FiltersLoading from './FiltersLoading'
@@ -76,6 +77,7 @@ export default {
   setup () {
     const state = reactive({
       isLoading: false,
+      isLoadingFeedbacks: false,
       feedbacks: [],
       hasError: false,
       currentFeedbacksType: '',
@@ -86,10 +88,37 @@ export default {
     })
     onMounted(() => {
       fetchFeedbacks()
+      window.addEventListener('scroll', handleScroll, false)
+    })
+    onUnmounted(() => {
+      window.removeEventListener('scroll', handleScroll, false)
     })
 
+    function handleScroll () {
+
+    }
+
     function handleErrors (error) {
+      state.isLoading = false
+      state.isLoadingFeedbacks = false
       state.hasError = !!error
+    }
+    async function changeFeedbacksType (type) {
+      try {
+        state.isLoadingFeedbacks = true
+        state.pagination.offset = 0
+        state.pagination.limit = 5
+        state.currentFeedbacksType = type
+        const { data } = await services.feedbacks.getAll({
+          type,
+          ...state.pagination
+        })
+        state.feedbacks = data.results
+        state.pagination = data.pagination
+        state.isLoadingFeedbacks = false
+      } catch (error) {
+        handleErrors(error)
+      }
     }
 
     async function fetchFeedbacks () {
@@ -110,7 +139,8 @@ export default {
     return {
       state,
       fetchFeedbacks,
-      handleErrors
+      handleErrors,
+      changeFeedbacksType
     }
   }
 
