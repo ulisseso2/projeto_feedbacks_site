@@ -13,6 +13,7 @@ Bibliotecas:
 - Vee-Validate (Tratamento de msg de erros) - https://vee-validate.logaretm.com/v4/
 
 Esse projeto foi desenvolvido durante o estudo de Vue JS do site da VueJS Brasil.
+O Objetivo foi conhecer os conceitos básicos do VUE, entender como funcionam as funções e estado.
 
 Página Principal
 
